@@ -1,0 +1,4 @@
+<button (click)="loadPokemonList()">Load List</button>
+<ul>
+  <li *ngFor="let pokemon of pokemonList"><a href="http://localhost/pokemons/">{{pokemon.name}}</a></li>
+</ul>
