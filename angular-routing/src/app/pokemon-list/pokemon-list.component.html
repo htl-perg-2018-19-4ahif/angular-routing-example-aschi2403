@@ -1,4 +1,6 @@
 <button (click)="loadPokemonList()">Load List</button>
+
 <ul>
-  <li *ngFor="let pokemon of pokemonList"><a href="http://localhost/pokemons/">{{pokemon.name}}</a></li>
-</ul>
+    <li *ngFor="let pokemon of pokemonList; let i=index" [hidden]="!pokemon.name.includes(filterString)"> <a routerLink="/pokemons/{{i+1}}">{{pokemon.name}}</a></li>
+  </ul>
+<input type="text" [(ngModel)]="filterString">

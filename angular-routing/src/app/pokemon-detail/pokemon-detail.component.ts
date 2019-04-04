@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 interface IPokemon{
-  name: string,
+  name: string;
   abilities: IAbility[]
 }
 
@@ -19,7 +19,7 @@ interface IAbility{
   styleUrls: ['./pokemon-detail.component.css']
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemon: IPokemon;
+  pokemon: IPokemon={name:'',abilities:[]};
 
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 

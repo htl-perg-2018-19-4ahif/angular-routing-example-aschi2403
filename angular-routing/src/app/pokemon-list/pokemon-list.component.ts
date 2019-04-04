@@ -22,6 +22,7 @@ interface IPokemonList{
 export class PokemonListComponent implements OnInit {
 
   pokemonList: IPokemon[];
+  filterString: string = '';
 
   constructor(private http: HttpClient){
   }
@@ -30,10 +31,25 @@ export class PokemonListComponent implements OnInit {
   }
 
   async loadPokemonList(){
-    let pokemonResult: IPokemonList =  await this.http.get<IPokemonList>('https://pokeapi.co/api/v2/pokemon').toPromise();
-    
-    
-
+    let count = (await this.http.get<IPokemonList>('https://pokeapi.co/api/v2/pokemon/').toPromise()).count;
+    let pokemonResult: IPokemonList =  (await this.http.get<IPokemonList>(`https://pokeapi.co/api/v2/pokemon/?limit=${count}`).toPromise());
     this.pokemonList = pokemonResult.results;
   }
+
+
+ /* filterResults(filterString: string){
+    this.filterString = filterString;
+    this.pokemonList.filter(this.containsString);
+  }
+
+  containsString(element: IPokemon, index, array){
+    if(this.filterString === '')
+      return true;
+
+    if(element.name.includes(this.filterString))
+      return true;
+    else
+      return false;
+  }
+  */
 }
